@@ -215,7 +215,7 @@
                 </ul>
                 <div class="footer">
                     <p class="copyright">/u/Cartmanishere</p>
-                    <a href="#!">Privacy</a> &amp; <a href="#!">Terms</a>
+                    <a class="modal-trigger" href="#modal_term">Privacy</a> &amp; <a class="modal-trigger" href="#modal_term">Terms</a>
                 </div>
                 </div>
             </aside>
@@ -227,8 +227,8 @@
             {% if links %}
             <div class="page-footer">
                 <div class="footer-grid container">
-                    {% if links.has_previous %}
                     <div class="footer-l white">&nbsp;</div>
+                    {% if links.has_previous %}
                     <div class="footer-grid-l white">
                         {% if search %}
                             <a class="footer-text" href="?query={{ search }}&page={{ links.previous_page_number }}">
@@ -264,9 +264,13 @@
             {% endif %}
         </div>
 
-        <div class="left-sidebar-hover"></div>
-        
-        
+        <div id="modal_term" class="modal">
+            <div class="modal-content">
+                <div class="center-align">
+                     <img src="{% static 'assets/images/authoritah.gif' %}">
+                </div>
+            </div>
+        </div>
         <!-- Javascripts -->
         <script src="{% static 'assets/plugins/materialize/js/materialize.min.js' %}"></script>
         <script src="{% static 'assets/plugins/material-preloader/js/materialPreloader.min.js' %}"></script>

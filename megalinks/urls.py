@@ -29,4 +29,4 @@ urlpatterns = [
     url(r'^(?P<tagfilter>Tutorial)/$', views.index, name='index'),
     url(r'^(?P<tagfilter>Music)/$', views.index, name='index'),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
