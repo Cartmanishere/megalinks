@@ -1,0 +1,112 @@
+{% extends "megalinks/new/layout.html" %}
+{% block body %}
+{% load static %}
+    <br /><br />
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card" style="background-color: #E5EFF1">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="page-title"><a class="modal-trigger" href="#modal1">Account Dispenser</a></div>
+                    </div>
+                    <form action="" method="POST" id="account_form">
+                        {% csrf_token %}
+                        <div class="row">
+                             <div class="input-field col s12">
+                                 <input id="username" type="text" class="validate" name="username" required>
+                                 <label for="username">Username</label>
+                             </div>
+                        </div>
+                        <div class="row">
+                             <div class="input-field col s12">
+                                 <input id="password" type="text" class="validate" name="password" required>
+                                 <label for="password">Password</label>
+                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s6">
+                                <button type="button" class="waves-effect waves-teal btn indgio" value="Create" onclick="sendInfo()">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <div id="loading" class="col s12 img-responsive hide">
+                        <div class="center-align hide-on-small-and-down">
+                            <img src="{% static 'assets/giphy.gif' %}" width="250" height="250">
+                            <p style="font-size: 20px;"><b>This might take some time. Please wait ...</b></p>
+                        </div>
+                        <div class="center-align hide-on-med-and-up">
+                            <img src="{% static 'assets/giphy.gif' %}" width="150" height="150">
+                            <p style="font-size: 20px;"><b>Please wait ...</b></p>
+                        </div>
+                    </div>
+                    <div class="hide" id="result">
+                        <div class="col s12 l6 m6">
+                             <div class="card-panel green white-text hoverable" style="padding: 40px;">
+                                 <pre><p id="username_res" style="font-size: 20px;"></p>
+                                 <p id="password_res" style="font-size: 20px;"></p></pre>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Please read the following points carefully :</h4>
+        <ul>
+            <li>Username and password must be alphanumeric.</li>
+            <li>This is an experimental feature. Don't expect it to work carefully.</li>
+            <li>Heed the loading sign. Generating and verifying an account can take a while.</li>
+            <li>You do not need to keep track of all your generated accounts. You can find them in the <u>Generated Accounts</u> section.</li>
+            <li>Please go easy on my server. Only use when you need a quick account to upload or import something.</li>
+            <li>Pace yourself. This site isn't going anywhere.</li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+function sendInfo(){
+    var reg = new RegExp(/^[a-z0-9]+$/i)
+    var username = $("#username").val()
+    var password = $("#password").val()
+    if(reg.test(username) && reg.test(password)) {
+        $.ajax({
+            type: "POST",
+            data: $("#account_form").serialize(),
+            url: "{% url 'account_new' %}",
+            beforeSend: function () {
+                $("#loading").attr("class", "col s12 img-responsive");
+                $("html, body").animate({scrollTop: $(document).height()}, 5000);
+            },
+            success: function (response) {
+                if (response['success']) {
+                    $("#username").val("")
+                    $("#password").val("")
+                    $("#loading").attr("class", "col s12 img-responsive hide");
+                    $("#username_res").text("Email: " + response['email']);
+                    $("#password_res").text("Password: " + response['password']);
+                    $("#result").attr("class", "");
+                }
+                else {
+                    $("#loading").attr("class", "col s12 img-responsive hide");
+                    $("#username_res").text("Server Responded With error");
+                    $("#password_res").text("Messsage: " + response['message']);
+                    $("#result").attr("class", "");
+                    $("html, body").animate({scrollTop: $(document).height()}, 5000);
+                }
+            }
+        });
+    }
+    else{
+        swal("Sorry!", "Username and password must be stricly alphanumeric.", "error");
+    }
+}
+</script>
+{% endblock %}

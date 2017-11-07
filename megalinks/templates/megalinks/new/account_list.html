@@ -1,0 +1,38 @@
+{% extends 'megalinks/new/layout.html' %}
+{% block body %}
+<br />
+<div class="row center-align">
+    <div class="s10 l10 m10">
+        <h3 class="truncate header">
+            {% if tagfilter %}
+            {{ tagfilter }}
+            {% else %}
+            Recent Uploads
+            {% endif %}
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="s12 m12 l12">
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for i in links %}
+            <li>
+                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>{{ i.email }}<span class="badge hide-on-med-and-down">{{ i.size }}</span></div>
+                <div class="collapsible-body">
+                    <p style="line-height: 1.8;font-size: 20px;">
+                    <span>Email: {{ i.email }}</span><br>
+                    <span>Password: {{ i.password }}</span><br>
+                    <span>Date: {{ i.date }}</span><br>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'megalinks/new/layout.html' %}
+{% load staticfiles %}
+{% block body %}
+
+	<div class="row">
+
+
+
+		         <!-- general Profile -->
+		        <div id="details" class="col s12">
+			      <div class="card">
+			      		<div class="card-content" style="font-size: 18px;">
+			        		<div class="row">
+			        		<span class="" style="font-size: 18px"><u><strong>Details</strong></span></u><br><br />
+			        			<div class="col s12 m12 l12">
+			        				Title: <b>{{ link.title }}</b>
+			        			</div>
+			        		</div>
+
+			        		<div class="row">
+			        			<div class="col s12 m12 l12">
+			        				Size: <b>{{ link.size }}</b>
+			        			</div>
+			        		</div>
+
+							<div class="row">
+			        			<div class="col s12 m12 l12">
+			        				Submitted By: <b>{{ link.user }}</b>
+			        			</div>
+			        		</div>
+
+							<div class="row">
+			        			<div class="col s12 m12 l12">
+			        				Tag: <b>{{ link.tag }}</b>
+			        			</div>
+			        		</div>
+							{% if request.user == link.user or request.user.is_superuser %}
+							<div class="row">
+			        			<div class="col s12 m12 l12">
+                                     <a class="waves-effect waves-light btn indigo" href="{% url 'edit_link' id=link.id %}">Edit</a>
+                                     <a class="waves-effect waves-light btn red" url="{% url 'delete_link' id=link.id %}" onclick="delete_alert(this)">Delete</a>
+			        			</div>
+			        		</div>
+							{% endif %}
+							<hr>
+
+                            <div class="row">
+                                <span class="" style="font-size: 18px"><u><strong>Downloads</strong></u></span><br/><br>
+			        			<div class="col s12 m6 l6">
+									<span id="badge" class="new badge hide-on-small-and-down" data-badge-caption="" style="background-color: #33302e;">... loading ...</span>
+									<a id="download_link" class="waves-effect waves-light btn" href="{{ link.link }}" target="_blank"><i class="material-icons left">file_download</i>Download</a>
+			        			</div>
+			        		</div>
+                            <hr>
+
+							<div class="row">
+								<span class="" style="font-size: 18px"><u><strong>Description</strong></u></span><br/><br>
+			        			<div class="col s12 m12 l12" style="font-size: 18px;">
+			        				{% if link.description != '' %}
+									<b>{{ link.description|linebreaks }}</b>
+			        				{% else %}
+									<b>No Description provided.</b>
+									{% endif %}
+								</div>
+			        		</div>
+
+
+
+			        	</div>
+			        </div>
+		        </div>
+		        <!-- Educational  -->
+
+
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify([{"a":"g", "g":1, "ssl":0, "p":"{{ link.checkable }}"}]),
+                url: "https://g.api.mega.co.nz/cs",
+                success: function(data){
+                    if(data[0]==-2){
+                        $("#badge").text("Unable to determine");
+                    }
+                    else if(data[0]!=-9 && data[0]!=-16){
+                        $("#badge").text("Active Link");
+                        $("#badge").attr("style", "background-color: #258A25")
+					}
+                    else{
+                        $("#badge").text("Dead Link");
+                        $("#badge").attr("style", "background-color: #A20901")
+                    }
+
+                },
+                error: function(error){
+                    swal("There was some error. Please try again.")
+                }
+
+            })
+        })
+		function delete_alert(element){
+            var url = $(element).attr("url");
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this information!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: true
+            }, function(){
+                location.href=url
+            });
+        }
+    </script>
+
+
+{% endblock %}

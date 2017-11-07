@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from steelcoders.com/alpha/v1.2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Feb 2017 06:05:26 GMT -->
+<head>
+        {% load static %}
+        <!-- Title -->
+        <title>Megalinks | Brought to you by Cartmanishere</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <meta name="description" content="Download Free Movies, Music , TV Shows , Games & Softwares from MEGA.co.nz." />
+        <meta name="keywords" content="Download links, Megalinks, Mega Dowload, Movie Download, TV Mega Download, Free Music Download">
+        <!-- Styles -->
+        <link type="text/css" rel="stylesheet" href="{% static 'assets/plugins/materialize/css/materialize.min.css' %}"/>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+        <link href="{% static 'assets/plugins/metrojs/MetroJs.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/plugins/weather-icons-master/css/weather-icons.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" type="text/css"/>
+
+        	
+        <!-- Theme Styles -->
+        <link href="{% static 'assets/css/alpha.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+        
+        <script src="{% static 'assets/plugins/jquery/jquery-2.2.0.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/sweetalert/sweetalert.min.js' %}"></script>
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="{% static 'assets/images/ios-desktop.png' %}">
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            {% if messages %}
+                {% for message in messages %}
+                    var tag = "{{ message.tags }}";
+                    var message = "{{ message }}";
+                    if(tag=="info"){
+                       swal(message);
+                    }
+                    if(tag=="success"){
+                        swal("Good job!", message, "success")
+                    }
+                    if(tag=="error"){
+                        swal ("Oops" , message , "error")
+                    }
+
+                {% endfor %}
+            {% endif %}
+        });
+
+        </script>
+        <style>
+
+            .navfix2 {
+              position:absolute;
+
+            }
+            .myline-height{
+                line-height: 1.5em;
+            }
+            #badge {
+                font-size: 18px;
+                padding: 4px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            .contribute {
+                font-size: 18px;
+                line-height: 1.6;
+            }
+        </style>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+    </head>
+    <body>
+        <div class="loader-bg"></div>
+        <div class="loader">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-teal lighten-1">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mn-content fixed-sidebar">
+            <header class="mn-header navbar-fixed">
+                <nav class="cyan darken-1">
+                    <div class="nav-wrapper row">
+                        <section class="material-design-hamburger navigation-toggle">
+                            <a href="javascript:void(0)" data-activates="slide-out" class="button-collapse show-on-large material-design-hamburger__icon">
+                                <span class="material-design-hamburger__layer"></span>
+                            </a>
+                        </section>
+                        <div class="header-title col s3 l3 center-align">
+                            <span class="chapter-title">Megalinks</span>
+                        </div>
+                            <form class="left search col s6 hide-on-small-and-down" action="{% url 'search' %}" method="GET">
+                                <div class="input-field">
+                                    <input id="search" type="search" placeholder="Search" autocomplete="off" name="query">
+                                    <label for="search"><i class="material-icons search-icon">search</i></label>
+                                </div>
+                                <a href="javascript: void(0)" class="close-search"><i class="material-icons">close</i></a>
+                            </form>
+                        <ul class="right col s9 m3 nav-right-menu">
+                            <li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header>
+            
+            
+            <aside id="slide-out" class="side-nav white fixed">
+                <div class="side-nav-wrapper">
+                    <div class="sidebar-profile">
+                       {% if request.user.is_authenticated %}
+
+                        <div class="sidebar-profile-image">
+                            <img src="{% static 'assets/images/ios-desktop.png' %}" class="circle" alt="">
+                        </div>
+                        <div class="sidebar-profile-info">
+                                <p>{{ request.user.username }}</p>
+                            </a>
+                        </div>
+                       {% endif %}
+
+                    </div>
+
+                <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+                    {% if not request.user.is_authenticated %}
+                    <li class="no-padding">
+                        <a href="{% url 'login' %}" class="collapsible-header waves-effect waves-grey"><i class="material-icons">input</i>Login</a>
+                    </li>
+                    {% endif %}
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="{% url 'activity' %}"><i class="material-icons">dashboard</i>Activity</a></li>
+
+                    <li class="no-padding">
+                        <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">code</i>Categories<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="{% url 'index' tagfilter='TV' %}">TV</a></li>
+                                <li><a href="{% url 'index' tagfilter='Movie' %}">Movies</a></li>
+                                <li><a href="{% url 'index' tagfilter='Music' %}">Music</a></li>
+                                <li><a href="{% url 'index' tagfilter='Tutorial' %}">Tutorials</a></li>
+                                <li><a href="{% url 'index' tagfilter='Game' %}">Games</a></li>
+                                <li><a href="{% url 'index' tagfilter='Ebook' %}">Books</a></li>
+                                <li><a href="{% url 'index' tagfilter='Software' %}">Software</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li class="no-padding">
+                        <a href="{% url 'add_link' %}" class="collapsible-header waves-effect waves-grey"><i class="material-icons">add_box</i>Post Link</a>
+                    </li>
+                    <li class="no-padding">
+                        <a href="{% url 'submissions' %}" class="collapsible-header waves-effect waves-grey"><i class="material-icons">content_paste</i>Submissions</a>
+                    </li>
+
+                    <li class="no-padding">
+                        <a href="{% url 'accounts' %}" class="collapsible-header waves-effect waves-grey truncate"><i class="material-icons">recent_actors</i>Generated Accounts</a>
+                    </li>
+
+                    {% endif %}
+                    <li class="no-padding">
+                        <a href="{% url 'account_new' %}" class="collapsible-header waves-effect waves-grey"><i class="material-icons">perm_contact_calendar</i>Account Dispenser</a>
+                    </li>
+                    <li class="no-padding"><a href="{% url 'statistics' %}" class="waves-effect waves-grey"><i class="material-icons">timeline</i>Statistics</a></li>
+                    <li class="no-padding"><a href="{% url 'contribute' %}" class="waves-effect waves-grey"><i class="material-icons">thumb_up</i>Contribute</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li class="no-padding">
+                        <a href="{% url 'logout' %}" class="collapsible-header waves-effect waves-grey"><i class="material-icons">close</i>Sign Out</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="footer">
+                    <p class="copyright">/u/Cartmanishere</p>
+                    <a href="#!">Privacy</a> &amp; <a href="#!">Terms</a>
+                </div>
+                </div>
+            </aside>
+            <main class="mn-inner inner-active-sidebar">
+                {% block body %}
+
+                {% endblock %}
+            </main>
+            {% if links %}
+            <div class="page-footer">
+                <div class="footer-grid container">
+                    {% if links.has_previous %}
+                    <div class="footer-l white">&nbsp;</div>
+                    <div class="footer-grid-l white">
+                        {% if search %}
+                            <a class="footer-text" href="?query={{ search }}&page={{ links.previous_page_number }}">
+                        {% else %}
+                            <a class="footer-text" href="?page={{ links.previous_page_number }}">
+                        {% endif %}
+                            <i class="material-icons arrow-l">arrow_back</i>
+                            <span class="direction">Previous</span>
+                            <div>
+                                Page No {{ links.previous_page_number }}
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if links.has_next %}
+                    <div class="footer-r white">&nbsp;</div>
+                    <div class="footer-grid-r white">
+                        {% if search %}
+                            <a class="footer-text" href="?query={{ search }}&page={{ links.next_page_number }}">
+                        {% else %}
+                            <a class="footer-text" href="?page={{ links.next_page_number }}">
+                        {% endif %}
+                            <i class="material-icons arrow-r">arrow_forward</i>
+                            <span class="direction">Next</span>
+                            <div>
+                                Page No {{ links.next_page_number }}
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="left-sidebar-hover"></div>
+        
+        
+        <!-- Javascripts -->
+        <script src="{% static 'assets/plugins/materialize/js/materialize.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/material-preloader/js/materialPreloader.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.js' %}"></script>
+        <script src="{% static 'assets/plugins/waypoints/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/counter-up-master/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+
+        <script src="{% static 'assets/plugins/flot/jquery.flot.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/flot/jquery.flot.time.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/flot/jquery.flot.symbol.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/flot/jquery.flot.resize.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/flot/jquery.flot.tooltip.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/curvedlines/curvedLines.js' %}"></script>
+        <script src="{% static 'assets/plugins/peity/jquery.peity.min.js' %}"></script>
+        <script src="{% static 'assets/js/alpha.min.js' %}"></script>
+        <script>
+            $(document).ready(function(){
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-90313095-1', 'auto');
+              ga('send', 'pageview');
+
+            });
+        </script>
+
+    </body>
+
+<!-- Mirrored from steelcoders.com/alpha/v1.2/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Feb 2017 06:06:21 GMT -->
+</html>

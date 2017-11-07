@@ -1,0 +1,116 @@
+{% extends 'megalinks/new/layout.html' %}
+{% block body %}
+    <h4 align="center">Site Statistics</h4>
+    <div class="row">
+        <div class="col s12 l4">
+            <div class="card">
+                <div class="card-content hoverable">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Total Users</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ site.users }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Total Posts</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ site.posts }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Accounts Generated</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ site.accounts }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12 center-align">
+            <div class="card">
+                <div class="card-content">
+                    <table class="table-responsive bordered highlight" style="font-size: 18px;">
+                        <thead>
+                            <tr>
+                                <th data-field="id">Category</th>
+                                <th data-field="name">Total Posts</th>
+                                <th data-field="price">Total Size*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in data %}
+                            <tr>
+                                <td>{{i.name}}</td>
+                                <td>{{i.posts}}</td>
+                                <td>{{i.size}}GB</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <h4 align="center">User Statistics</h4>
+    <div class="row">
+        <div class="col s12 l4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Total Posts</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ request.user.posts }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Total Size*</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ request.user.size }}TB</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <div class="card-panel light-blue lighten-3">
+                        <div class="center-align"><span class="flow-text f-bold">Generated Accounts</span></div>
+                    </div>
+                    <div class="center-align">
+                        <h1>{{ request.user.accounts }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col s12">
+            <p class="flow-text" style="font-size: 18px"><b>* Size statistics is an experimental feature. Values are not precise.</b></p>
+        </div>
+    </div>
+
+{% endblock %}
