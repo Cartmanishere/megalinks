@@ -183,14 +183,14 @@ def signup(request):
             return render(request, 'megalinks/new/sign_up.html', {})
 
         else:
-            email = request.POST.get('email', '')
+            username = request.POST.get('username', '')
             password = request.POST.get('password', '')
-            if email=='' or password=='':
+            if username=='' or password=='':
                 messages.error(request, "Please enter valid username and password.")
                 return redirect('signup')
 
             group = Group.objects.get(name="Uploaders")
-            u = User(username=email, password=password)
+            u = User(username=username, password=password)
             u.set_password(password)
             u.save()
             u.groups.add(group)
