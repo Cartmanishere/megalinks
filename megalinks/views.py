@@ -244,7 +244,8 @@ def add_link(request):
             size=size+size_b,
             tag=tag,
             link=link,
-            description=description
+            description=description,
+            user=request.user
         )
         l.save()
 
