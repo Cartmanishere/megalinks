@@ -190,14 +190,19 @@ def signup(request):
                 return redirect('signup')
 
             group = Group.objects.get(name="Uploaders")
-            u = User(username=username, password=password)
-            u.set_password(password)
-            u.save()
-            u.groups.add(group)
-            user = authenticate(username=email, password=password)
-            login(request, user)
-            messages.success(request,"Thank you for signing up!")
-            return redirect('activity')
+            try:
+                u = User(username=username, password=password)
+                u.set_password(password)
+                u.save()
+                u.groups.add(group)
+                user = authenticate(username=username, password=password)
+
+                login(request, user)
+                messages.success(request,"Thank you for signing up!")
+                return redirect('activity')
+            except:
+                messages.error(request, "This username already exists.")
+                return redirect('signup')
 
 
 @login_required()
