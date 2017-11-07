@@ -125,7 +125,7 @@ def login_user(request):
                 else:
                     return HttpResponse("Sorry but your account is disabled")
             else:
-                messages.add_message(request, messages.error, 'Wrong username/password.')
+                messages.error(request, 'Wrong username/password.')
                 return redirect('login')
 
         else:
