@@ -28,7 +28,7 @@
 					<div class="row">
 			        	<div class="col s12 m4 l4">
                              <a class="waves-effect waves-light btn indigo" href="{% url 'detail' id=i.id %}">View</a>
-                            {% if request.user == link.user or request.user.is_superuser %}
+                            {% if request.user == i.user or request.user.is_superuser %}
                              <a class="waves-effect waves-light btn" href="{% url 'edit_link' id=i.id %}">Edit</a>
                              <a class="waves-effect waves-light btn red" url="{% url 'delete_link' id=i.id %}" onclick="delete_alert(this)">Delete</a>
                             {% endif %}
