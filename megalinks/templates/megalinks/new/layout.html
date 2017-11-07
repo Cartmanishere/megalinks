@@ -242,8 +242,8 @@
                         </a>
                     </div>
                     {% endif %}
-                    {% if links.has_next %}
                     <div class="footer-r white">&nbsp;</div>
+                    {% if links.has_next %}
                     <div class="footer-grid-r white">
                         {% if search %}
                             <a class="footer-text" href="?query={{ search }}&page={{ links.next_page_number }}">
