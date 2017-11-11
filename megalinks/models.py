@@ -12,7 +12,8 @@ class Link(models.Model):
     ("Tutorial", "Tutorial"),
     ("Music", "Music"),
     ("Ebook", "Ebook"),
-    ("Software", "Software")
+    ("Software", "Software"),
+    ("Documentary", "Documentary")
     )
     tag = models.CharField(max_length=50, choices=TAG_CHOICES, default="")
     link = models.CharField(max_length=200, default="")
@@ -32,3 +33,5 @@ class Account(models.Model):
 
     def __str__(self):
         return self.email
+
+

@@ -15,7 +15,7 @@ import requests
 import re
 import json
 
-TAGS = ["TV", "Movie", "Ebook", "Music", "Tutorial", "Game", "Software"]
+TAGS = ["TV", "Movie", "Ebook", "Music", "Tutorial", "Game", "Software", "Documentary"]
 
 
 def get_total_size(l, type=None):

@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^(?P<tagfilter>Ebook)/$', views.index, name='index'),
     url(r'^(?P<tagfilter>Tutorial)/$', views.index, name='index'),
     url(r'^(?P<tagfilter>Music)/$', views.index, name='index'),
+    url(r'^(?P<tagfilter>Documentary)/$', views.index, name='index'),
 
 ]
