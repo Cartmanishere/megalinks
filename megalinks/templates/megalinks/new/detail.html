@@ -57,8 +57,12 @@
 								<span class="" style="font-size: 18px;"><u><strong>Description</strong></u></span><br/><br>
 			        			<div class="col s12 m12 l12" style="font-size: 18px;">
 			        				{% if link.description != '' %}
-									<b>{{ link.description|linebreaks }}</b>
-			        				{% else %}
+									    {% if link.user.is_superuser %}
+                                            {{ link.description|safe|linebreaks }}
+			        				    {% else %}
+                                            <b>{{ link.description|linebreaks }}<b>
+                                        {% endif %}
+                                    {% else %}
 									<b>No Description provided.</b>
 									{% endif %}
 								</div>
@@ -76,6 +80,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
+            document.title = "Megalinks | {{ link.title }}";
             $.ajax({
                 type: "POST",
                 data: JSON.stringify([{"a":"g", "g":1, "ssl":0, "p":"{{ link.checkable }}"}]),
